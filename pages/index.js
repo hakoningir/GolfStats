@@ -11,14 +11,19 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to Golf Scorecard</h1>
+        <h1 className={styles.title}>GolfStats</h1>
 
         <p className={styles.description}>
-          To get started, enter your golf round scores:
+          Skráðu þig inn til að byrja.
         </p>
 
-        <Link href="/scorecard/new">
-          <a className={styles.button}>Enter Scores</a>
+        {/* <Link href="/scorecard/new"> */}
+        <Link href="/login">
+          <a className={styles.button}>Innskráning</a>
+        </Link>
+        <p> eða </p>
+        <Link href="/signup">
+          <a className={styles.button}>Nýskráning</a>
         </Link>
       </main>
     </div>
