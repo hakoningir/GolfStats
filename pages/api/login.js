@@ -10,9 +10,10 @@ export default async (req, res) => {
     return res.status(405).end();
   }
 
-  const { userName, password } = req.body;
+  const { username, password } = req.body;
 
-  // Verify userName and password
+  // TODO: Check the username and password against your database
+  const hashedPasswordFromDB = "hash123"; // Replace with actual hashed password from your database
   const isValid = await compare(password, hashedPasswordFromDB);
 
   if (!isValid) {
@@ -20,7 +21,7 @@ export default async (req, res) => {
   }
 
   // Generate JWT token
-  const token = sign({ userName }, secret, { expiresIn: "1h" });
+  const token = sign({ username }, secret, { expiresIn: "1h" });
 
   // Set token as cookie
   res.setHeader(
