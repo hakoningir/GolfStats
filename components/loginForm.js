@@ -9,7 +9,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("/login", {
+    const response = await fetch("../pages/api/login.js", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
@@ -38,7 +38,7 @@ const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
-      <button type="submit">Login</button>
+      <button type="submit">Innskrá</button>
     </form>
   );
 };
