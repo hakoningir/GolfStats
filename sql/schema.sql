@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS Rounds;
 DROP TABLE IF EXISTS Holes;
 DROP TABLE IF EXISTS Courses;
+DROP TABLE IF EXISTS Users;
 
 CREATE TABLE Courses(
     id CHAR(6) PRIMARY KEY,
@@ -16,11 +17,10 @@ CREATE TABLE Holes(
 );
 
 CREATE TABLE Users(
-    admin BOOLEAN DEFAULT false,
     id serial PRIMARY KEY,
     username character varying(64) NOT NULL UNIQUE,
     password character varying(256) NOT NULL
-)
+);
 
 CREATE TABLE Rounds(
     score INT,
@@ -35,7 +35,7 @@ CREATE TABLE Rounds(
     holeNumber INT,
     holePar INT,
     played DATE,
-    FOREIGN KEY (userId) REFERENCES Users (id),
+    userId SERIAL REFERENCES Users (id),
     FOREIGN KEY (courseId) REFERENCES Courses (id),
     FOREIGN KEY (holeNumber, holePar) REFERENCES Holes (number, par)
 );

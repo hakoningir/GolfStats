@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 const SignupForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -14,11 +13,11 @@ const SignupForm = () => {
       const response = await fetch("/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password, email }),
+        body: JSON.stringify({ username, password }),
       });
 
       if (response.ok) {
-        router.push("/login");
+        router.push("/user");
       } else {
         console.error("Signup failed");
       }
@@ -29,22 +28,26 @@ const SignupForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <div>
       <label>
-        Username:
+        Notendanafn:
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
       </label>
+      </div>
+      <div>
       <label>
-        Password:
+        Lykilorð:
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
+      </div>
       <button type="submit">Nýskráning</button>
     </form>
   );

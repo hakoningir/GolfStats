@@ -13,6 +13,7 @@ const Login = () => {
           </p>
           <Link href="/signup">Nýskráning</Link>
         </div>
+        <Link href="/">Til baka</Link>
     </div>
   );
 };

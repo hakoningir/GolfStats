@@ -22,6 +22,7 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <div>
       <label>
         Notendanafn:
         <input
@@ -30,6 +31,8 @@ const LoginForm = () => {
           onChange={(e) => setUsername(e.target.value)}
         />
       </label>
+      </div>
+      <div>
       <label>
         Lykilorð:
         <input
@@ -38,6 +41,7 @@ const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
+      </div>
       <button type="submit">Innskrá</button>
     </form>
   );
