@@ -15,6 +15,13 @@ CREATE TABLE Holes(
     CONSTRAINT fk_course FOREIGN KEY (courseId) REFERENCES Courses (id)
 );
 
+CREATE TABLE Users(
+    admin BOOLEAN DEFAULT false,
+    id serial PRIMARY KEY,
+    username character varying(64) NOT NULL UNIQUE,
+    password character varying(256) NOT NULL
+)
+
 CREATE TABLE Rounds(
     score INT,
     putts INT,
@@ -28,6 +35,7 @@ CREATE TABLE Rounds(
     holeNumber INT,
     holePar INT,
     played DATE,
+    FOREIGN KEY (userId) REFERENCES Users (id),
     FOREIGN KEY (courseId) REFERENCES Courses (id),
     FOREIGN KEY (holeNumber, holePar) REFERENCES Holes (number, par)
 );

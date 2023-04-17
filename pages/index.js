@@ -18,12 +18,12 @@ export default function Home() {
         </p>
 
         {/* <Link href="/scorecard/new"> */}
-        <Link href="/login">
-          <a className={styles.button}>Innskráning</a>
+        <Link href="/login">Innskráning
+          {/* <a className={styles.button}></a> */}
         </Link>
         <p> eða </p>
-        <Link href="/signup">
-          <a className={styles.button}>Nýskráning</a>
+        <Link href="/signup">Nýskráning
+          {/* <a className={styles.button}></a> */}
         </Link>
       </main>
     </div>
