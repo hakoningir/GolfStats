@@ -12,7 +12,7 @@ CREATE TABLE Holes(
     number INT,
     par INT,
     courseId CHAR(6),
-    PRIMARY KEY (number, par),
+    PRIMARY KEY (number, courseId),
     CONSTRAINT fk_course FOREIGN KEY (courseId) REFERENCES Courses (id)
 );
 
@@ -23,6 +23,14 @@ CREATE TABLE Users(
 );
 
 CREATE TABLE Rounds(
+    roundId serial PRIMARY KEY,
+    courseId CHAR(6),
+    played DATE,
+    userId SERIAL REFERENCES Users (id),
+    FOREIGN KEY (courseId) REFERENCES Courses (id)
+);
+
+CREATE TABLE Statistics(
     score INT,
     putts INT,
     hitFarway VARCHAR(64),
@@ -31,14 +39,15 @@ CREATE TABLE Rounds(
     bunker BOOLEAN,
     sandSave BOOLEAN,
     inside100 INT,
-    courseId CHAR(6),
     holeNumber INT,
     holePar INT,
-    played DATE,
-    userId SERIAL REFERENCES Users (id),
-    FOREIGN KEY (courseId) REFERENCES Courses (id),
-    FOREIGN KEY (holeNumber, holePar) REFERENCES Holes (number, par)
+    courseId CHAR(6),
+    roundId serial,
+    FOREIGN KEY (holeNumber, courseId) REFERENCES Holes (number, courseId),
+    FOREIGN KEY (roundId) REFERENCES Rounds (roundId)
 );
+
+
 
 INSERT INTO Courses (id, name) VALUES ('V-001', 'Hlíðarendavöllur');
 
@@ -47,3 +56,5 @@ VALUES (1, 5, 'V-001'), (2, 4, 'V-001'), (3, 3, 'V-001'), (4, 4, 'V-001'), (5, 4
        (6, 3, 'V-001'), (7, 4, 'V-001'), (8, 5, 'V-001'), (9, 4, 'V-001'), (10, 5, 'V-001'), 
        (11, 4, 'V-001'), (12, 3, 'V-001'), (13, 4, 'V-001'), (14, 4, 'V-001'), (15, 3, 'V-001'), 
        (16, 4, 'V-001'), (17, 5, 'V-001'), (18, 4, 'V-001');
+
+
