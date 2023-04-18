@@ -8,16 +8,8 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const response = await fetch("../pages/api/login.js", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
-
-    if (response.ok) {
-      router.push("/");
-    }
+      
+    const response = await fetch("../src/lib/login.js")
   };
 
   return (

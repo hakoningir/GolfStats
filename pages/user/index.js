@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getCourses } from '../../lib/db';
+import { getCourses } from '../../src/lib/db';
 
 function UserPage() {
   const [rounds, setRounds] = useState([]);

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { query } from '../../lib/db';
+// import { query } from '../../lib/db';
 export default function GolfRoundForm() {
   const [scores, setScores] = useState(Array(18).fill(''));
   

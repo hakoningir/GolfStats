@@ -48,6 +48,12 @@ export async function createSchema(schemaFile = 'schema.sql') {
     await pool.query(schema);
 }
 
+export async function dropSchema(dropFile = DROP_SCHEMA_FILE) {
+  const data = await readFile(dropFile);
+
+  return query(data.toString('utf-8'));
+}
+
 export async function getCourses(){
     try {
         const result = await query(`SELECT * FROM Courses;`);
@@ -57,6 +63,14 @@ export async function getCourses(){
         return null;
     }
 }
+
+// export async function signup(){
+//     const result = await query(
+//         `
+//           INSERT INTO users (username, password)
+//           VALUES (?, ?);
+//         `);
+// }
 
 export async function end() {
     await pool.end();
