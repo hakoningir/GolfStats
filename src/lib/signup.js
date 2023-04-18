@@ -1,5 +1,5 @@
 import { hash } from "bcrypt";
-import { query } from "../../src/lib/db";
+import { query } from "./db";
 
 export default async function signup(req, res) {
   const { username, password } = req.body;

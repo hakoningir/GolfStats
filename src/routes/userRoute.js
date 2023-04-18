@@ -57,24 +57,24 @@ const registerValidation = [
     })
 ];
   
-    userRouter.get('/signup', catchErrors(signup));
-    userRouter.post('/signup', registerValidation, signupValidation);
-  
-    userRouter.get('/login', login);
-    userRouter.post(
-    '/login',
-  
-    // Þetta notar strat að ofan til að skrá notanda inn
-    passport.authenticate('local', {
-        failureMessage: 'Notandanafn eða lykilorð vitlaust.',
-        failureRedirect: '/login',
-    }),
-  
-    (req, res) => {
-        res.redirect('/');
+userRouter.get('/signup', catchErrors(signup));
+userRouter.post('/signup', registerValidation, signupValidation);
+
+userRouter.get('/login', login);
+userRouter.post(
+'/login',
+
+// Þetta notar strat að ofan til að skrá notanda inn
+passport.authenticate('local', {
+    failureMessage: 'Notandanafn eða lykilorð vitlaust.',
+    failureRedirect: '/login',
+}),
+
+(req, res) => {
+    res.redirect('/');
 });
   
-    userRouter.get('/logout', (req, res, next) => {
+userRouter.get('/logout', (req, res, next) => {
     // logout hendir session cookie og session
     req.logout(err=> {if(err){ next(err)}});
     res.redirect('/');

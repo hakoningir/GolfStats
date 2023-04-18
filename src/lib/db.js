@@ -1,7 +1,7 @@
 import pg from 'pg';
 import { readFile } from 'fs';
 
-const SCHEMA_FILE = '../pages/sql/schema.sql';
+const SCHEMA_FILE = '../sql/schema.sql';
 
 const { DATABASE_URL: connectionString, NODE_ENV: nodeEnv = 'development' } =
   process.env;

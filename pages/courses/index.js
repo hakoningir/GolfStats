@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import { query } from '../../lib/db';
+import { query } from '../../lib/db';
 export default function GolfRoundForm() {
   const [scores, setScores] = useState(Array(18).fill(''));
   
@@ -14,17 +14,17 @@ export default function GolfRoundForm() {
     console.log(scores);
   };
 
-  // async function selectCourse(){
-  //   const q = `
-  //     SELECT courseId FROM Courses where name = $1;
-  //   `;
-  // }
-  // async function getNumPar(courseId){
-  //   const q = `
-  //     SELECT number, par FROM Holes WHERE courseId = $1;
-  //   `;
-  //   await query(q);
-  // }
+  async function selectCourse(){
+    const q = `
+      SELECT courseId FROM Courses where name = $1;
+    `;
+  }
+  async function getNumPar(courseId){
+    const q = `
+      SELECT number, par FROM Holes WHERE courseId = $1;
+    `;
+    await query(q);
+  }
   
 
   return (

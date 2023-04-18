@@ -11,12 +11,12 @@ const SignupForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("../pages/api/signup", {
+      const response = await fetch("signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
       });
-
+      console.log(response)
       if (response.ok) {
         router.push("/user");
       } else {
