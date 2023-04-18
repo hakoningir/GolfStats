@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { getCourses } from '../../lib/db';
 
 function UserPage() {
   const [rounds, setRounds] = useState([]);
@@ -6,23 +7,23 @@ function UserPage() {
 
   useEffect(() => {
     setLoading(true);
-    fetch('/api/rounds')
-      .then(res => res.json())
-      .then(data => {
-        setRounds(data);
-        setLoading(false);
-      })
-      .catch(error => console.error(error));
+    getCourses().then(() => setLoading(false));
   }, []);
 
-  const handleNewRound = () => {
-    fetch('/api/rounds', { method: 'POST' })
-      .then(res => res.json())
-      .then(data => {
-        setRounds([...rounds, data]);
-      })
-      .catch(error => console.error(error));
+  const handleNewRound = async () => {
+    try {
+      const response = await fetch('/api/courses', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({}),
+      });
+      const data = await response.json();
+      setRounds([...rounds, data]);
+    } catch (error) {
+      console.error(error);
+    }
   };
+  
 
   return (
     <div>
