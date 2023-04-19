@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
-import { getCourses } from '../../src/lib/db';
+import Link from "next/link";
+// import { getCourses } from '../../src/lib/db';
+
+// export async function getStaticProps(){
+//     const courses = await getCourses();
+//     return courses;
+// }
 
 function UserPage() {
   const [rounds, setRounds] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    setLoading(true);
-    getCourses().then(() => setLoading(false));
-  }, []);
-
   const handleNewRound = async () => {
     try {
-      const response = await fetch('../courses', {
+      const response = await fetch('users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({}),
@@ -23,12 +24,12 @@ function UserPage() {
       console.error(error);
     }
   };
-  
 
   return (
     <div>
       <h1>GolfStats</h1>
-      <button onClick={handleNewRound}>Nýr hringur</button>
+      {/* <button onClick={handleNewRound}>Nýr hringur</button> */}
+      <Link href="newRound">Nýr hringur</Link>
       <button>Mín tölfræði</button>
       {loading ? (
         <p>Loading...</p>

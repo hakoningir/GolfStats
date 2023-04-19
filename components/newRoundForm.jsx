@@ -1,5 +1,30 @@
+// import React, { useState } from 'react';
+
+// const CoursesForm = ({ courses, onCourseSelect }) => {
+//   const [selectedCourse, setSelectedCourse] = useState(null);
+
+//   const handleCourseSelect = (event) => {
+//     setSelectedCourse(event.target.value);
+//     onCourseSelect(event.target.value);
+//   };
+
+//   return (
+//     <div>
+//       <label htmlFor="course-select">Select a course:</label>
+//       <select id="course-select" value={selectedCourse} onChange={handleCourseSelect}>
+//         <option value="">Choose a course...</option>
+//         {courses.map((course) => (
+//           <option key={course.id} value={course.id}>
+//             {course.name}
+//           </option>
+//         ))}
+//       </select>
+//     </div>
+//   );
+// };
+
 import { useState } from 'react';
-import { query } from '../../lib/db';
+
 export default function GolfRoundForm() {
   const [scores, setScores] = useState(Array(18).fill(''));
   
@@ -8,28 +33,14 @@ export default function GolfRoundForm() {
     newScores[holeNumber] = event.target.value;
     setScores(newScores);
   };
-  
-  const handleSubmit = (event) => {
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(scores);
   };
 
-  async function selectCourse(){
-    const q = `
-      SELECT courseId FROM Courses where name = $1;
-    `;
-  }
-  async function getNumPar(courseId){
-    const q = `
-      SELECT number, par FROM Holes WHERE courseId = $1;
-    `;
-    await query(q);
-  }
-  
-
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Enter Your Scores</h2>
       {scores.map((score, index) => (
         <div key={index}>
           <label htmlFor={`hole-${index + 1}`}>{`Hole ${index + 1}: `}</label>

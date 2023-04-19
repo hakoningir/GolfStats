@@ -9,7 +9,21 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
       
-    const response = await fetch("../src/lib/login.js")
+    try{
+      const response = await fetch("login",{
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+      console.log(response);
+      if(response.ok){
+        router.push('/user');
+      } else {
+        console.error("Login failed");
+      }
+    } catch (error){
+      console.error(error);
+    }
   };
 
   return (

@@ -37,7 +37,6 @@ function signupValidation(req, res){
     }
 }
 
-
 const registerValidation = [
     body('name')
       .isLength({min:1, max: 64})

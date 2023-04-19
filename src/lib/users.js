@@ -44,22 +44,22 @@ export async function findById(id) {
   return null;
 }
 
-export async function createUser(name, userName, password){
-  const hashedPassword = await bcrypt.hash(password, 11);
-  const newUser = `
-    INSERT INTO
-      users (name, username, password)
-    VALUES ($1, $2, $3)
-    RETURNING *
-  `;
-  try {
-    const result = await query(newUser, [name, userName, hashedPassword]);
-    return result.rows[0];
-  } catch (e) {
-    console.error('Gat ekki búið til notanda');
-  }
-  return null;
-}
+// export async function createUser(name, userName, password){
+//   const hashedPassword = await bcrypt.hash(password, 11);
+//   const newUser = `
+//     INSERT INTO
+//       users (name, username, password)
+//     VALUES ($1, $2, $3)
+//     RETURNING *
+//   `;
+//   try {
+//     const result = await query(newUser, [name, userName, hashedPassword]);
+//     return result.rows[0];
+//   } catch (e) {
+//     console.error('Gat ekki búið til notanda');
+//   }
+//   return null;
+// }
 
 export async function getUser(username){
     const user = await findByUsername(username);

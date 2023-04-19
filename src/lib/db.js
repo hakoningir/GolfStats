@@ -1,5 +1,5 @@
 import pg from 'pg';
-import { readFile } from 'fs';
+import { readFile } from 'fs/promises';
 
 const SCHEMA_FILE = '../sql/schema.sql';
 
@@ -52,16 +52,6 @@ export async function dropSchema(dropFile = DROP_SCHEMA_FILE) {
   const data = await readFile(dropFile);
 
   return query(data.toString('utf-8'));
-}
-
-export async function getCourses(){
-    try {
-        const result = await query(`SELECT * FROM Courses;`);
-        return result.rows;
-    } catch (error){
-        console.error(error);
-        return null;
-    }
 }
 
 // export async function signup(){
